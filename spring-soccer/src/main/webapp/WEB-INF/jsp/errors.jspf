@@ -1,0 +1,13 @@
+<%@ include file="/WEB-INF/jsp/taglibs.jspf" %>    
+    <spring:hasBindErrors name="accountForm">
+      <div class="error-message">
+        Please fix the 
+        <c:choose> 
+          <c:when test="${fn:length(errors.allErrors) == 1}"> 
+            error 
+          </c:when> 
+          <c:otherwise> 
+           errors 
+          </c:otherwise>
+      </c:choose> below.</div>
+    </spring:hasBindErrors>

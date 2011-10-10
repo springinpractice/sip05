@@ -1,0 +1,58 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/webflow
+	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="findExistingPlayerForm">
+	  				
+	<view-state id="findExistingPlayerForm">
+	 <on-render>
+	   <!-- Prepares the form object for display on a form -->
+	   <evaluate expression="findExistingPlayerFormAction.setupForm"/>	   	   
+	 </on-render>
+		<transition on="find" to="findExistingPlayerActionState">
+		  <!-- 
+		  Binds all incoming request parameters to the form object and 
+		  then validates the form object using a registered validator. 
+		  This action method will return the "success" event if there 
+		  are no binding or validation errors, otherwise it will 
+		  return the "error" event.
+		  -->
+		  <evaluate expression="findExistingPlayerFormAction.bindAndValidate"/>		  
+		</transition>
+	</view-state>
+	
+	<action-state id="findExistingPlayerActionState">	   
+	   <evaluate expression="playerService.findExistingPlayer(playerSearchCriteria)" 
+	   	result="flowScope.player"/>	   	
+	   <transition on="success" to="displayFindExistingPlayerResult"/>
+	</action-state>
+	
+  <!-- 
+	You can either end the subflow or reset the form and start over...
+  -->
+  <!--action-state id="newSearch">
+     <evaluate expression="findExistingPlayerFormAction.resetForm"/>
+     <transition on="success" to="findExistingPlayerForm"/>
+  </action-state-->	
+	
+  <view-state id="displayFindExistingPlayerResult">    
+    <transition on="back" to="findExistingPlayerForm"/>
+    <transition on="newSearch" to="newSearchEndState"/> 
+    <transition on="noneMatch" to="endState"/>
+    <transition on="existingAccountFound" to="existingAccountFoundEndState"/>       
+  </view-state>			
+
+  <end-state id="newSearchEndState"/>
+  
+  <end-state id="endState"/>
+  
+  <end-state id="existingAccountFoundEndState" >    
+    <output name="loginUsername" value="player.guardian.username"/>
+  </end-state>
+	 
+  <global-transitions>
+    <transition on="skip" to="endState"/>
+  </global-transitions>
+  				
+</flow>
