@@ -14,7 +14,11 @@
     </transition>      
   </subflow-state>
   
-  <view-state id="newAccountForm">
+  <view-state id="newAccountForm" model="accountForm">
+   <binder>
+	 <binding property="guardian.firstName" required="true"/>
+	 <binding property="guardian.lastName" required="true"/>
+	</binder>   
    <on-render>
      <evaluate expression="newAccountFormAction.setupForm"/>         
    </on-render>
