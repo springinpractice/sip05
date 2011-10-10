@@ -22,9 +22,25 @@
 		</transition>
 	</view-state>
 	
-	<action-state id="findExistingPlayerActionState">	   
-	   <evaluate expression="playerService.findExistingPlayer(playerSearchCriteria)" 
-	   	result="flowScope.player"/>	   	
+	<action-state id="findExistingPlayerActionState">
+		<!--Each of the following achieves the same functionality.-->
+	   
+		<!-- Using FindExistingPlayerAction.java...
+	   	<evaluate expression="findExistingPlayerAction" />
+	   	-->
+	   	
+	   	<!-- Or using PlayerActions.java - Syntax #1 -->	
+	   	<evaluate expression="playerActions.findExistingPlayer" />
+	    	    
+	   	<!-- 
+	   		Or using PlayerActions.java - Syntax #2
+	   		By convention, the "id" of the wrapping action-state will be
+	   		treated as the method to execute.  If our state id was 
+	   		"findExistingPlayer" instead of "findExistingPlayerActionState", 
+	   		we could have just used the following:	   	   	
+	   	<evaluate expression="playerActions" />
+	   	-->	
+	    	    	       
 	   <transition on="success" to="displayFindExistingPlayerResult"/>
 	</action-state>
 	

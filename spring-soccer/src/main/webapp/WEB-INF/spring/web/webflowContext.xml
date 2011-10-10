@@ -49,4 +49,12 @@
     </property>
   </bean>  
   
+  <bean id="playerActions" class="com.springinpractice.ch05.webflow.action.PlayerActions">
+    <property name="playerService" ref="playerService"/>
+  </bean>
+  
+  <bean id="findExistingPlayerAction" class="com.springinpractice.ch05.webflow.action.FindExistingPlayerAction">
+    <property name="playerService" ref="playerService"/>
+  </bean>  
+  
 </beans>
