@@ -9,7 +9,19 @@
     http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd">
 
   <flow:flow-builder-services id="flowBuilderServices"
-    development="true"/>
+    development="true"
+    validator="validator"
+    conversion-service="webflowConversionService"
+    />
+    
+  <!-- 
+  	Reuse the "conversionService" that is already being used by your
+  	Spring MVC project.  See the dispatcherServlet-context.xml file for
+  	details.
+   -->
+  <bean id="webflowConversionService" class="org.springframework.binding.convert.service.DefaultConversionService">
+    <constructor-arg ref="conversionService"/>
+  </bean>    
     
   <flow:flow-executor id="flowExecutor" flow-registry="flowRegistry"/>
   
