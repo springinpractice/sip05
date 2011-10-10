@@ -26,5 +26,7 @@
 	
 	<!-- Scans within the base package of the application for @Components to configure as beans -->
 	<context:component-scan base-package="com.springinpractice.ch05" />	
+	
+	<import resource="webflowContext.xml"/>
 			
 </beans>
