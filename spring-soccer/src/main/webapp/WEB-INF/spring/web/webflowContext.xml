@@ -69,4 +69,6 @@
     <property name="playerService" ref="playerService"/>
   </bean>  
   
+  <bean id="exceptionAction" class="com.springinpractice.ch05.webflow.action.ExceptionAction"/>
+  
 </beans>
