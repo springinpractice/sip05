@@ -1,3 +1,4 @@
+// Source project: sip05, branch: 06 (Maven Project)
 package com.springinpractice.ch05.form;
 
 import java.io.Serializable;
