@@ -1,4 +1,4 @@
-// Source project: sip03, branch: 04 (Maven Project)
+// Source project: sip05, branch: 04 (Maven Project)
 package com.springinpractice.ch05.webflow.action;
 
 import org.springframework.webflow.action.MultiAction;
