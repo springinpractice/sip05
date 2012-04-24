@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.springinpractice</groupId>
 	<artifactId>sip</artifactId>
-	<name>spring-soccer</name>
+	<name>sip05</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
