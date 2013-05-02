@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Source project: sip05, branch: 07 (Maven Project) -->
+<flow xmlns="http://www.springframework.org/schema/webflow"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/webflow
+	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	abstract="true">
+	  					
+  <view-state id="commonErrorView" 
+    view="/WEB-INF/flows/common/error.jsp"/>	  
+    
+  <view-state id="commonView" 
+    view="/WEB-INF/flows/common/commonView.jsp"/>    
+	  		 		  		 		  		 		  		 	
+  <global-transitions>
+    <transition on="commonErrorView" to="commonErrorView"/>
+    <!-- 
+      Obviously you would want to catch something more
+      specific
+     -->    
+    <transition 
+      on-exception="com.springinpractice.ch05.webflow.action.DemoRuntimeException" 
+      to="commonErrorView"/>
+  </global-transitions>
+  				
+</flow>

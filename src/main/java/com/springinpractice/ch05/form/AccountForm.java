@@ -1,3 +1,10 @@
+/* 
+ * Copyright (c) 2013 Manning Publications Co.
+ * 
+ * Book: http://manning.com/wheeler/
+ * Blog: http://springinpractice.com/
+ * Code: https://github.com/springinpractice
+ */
 package com.springinpractice.ch05.form;
 
 import java.io.Serializable;
@@ -7,6 +14,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.springinpractice.ch05.domain.Guardian;
 import com.springinpractice.ch05.domain.Player;
 
+/**
+ * @author Joshua White
+ */
 public class AccountForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
