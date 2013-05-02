@@ -1,74 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:flow="http://www.springframework.org/schema/webflow-config"
-  xsi:schemaLocation="
-    http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-    http://www.springframework.org/schema/webflow-config
-    http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:flow="http://www.springframework.org/schema/webflow-config"
+	xsi:schemaLocation="
+	    http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	    http://www.springframework.org/schema/webflow-config
+	    http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd">
 
-  <flow:flow-builder-services id="flowBuilderServices"
-    development="true"
-    validator="validator"
-    conversion-service="webflowConversionService"
-    />
-    
-  <!-- 
-  	Reuse the "conversionService" that is already being used by your
-  	Spring MVC project.  See the dispatcherServlet-context.xml file for
-  	details.
-   -->
-  <bean id="webflowConversionService" class="org.springframework.binding.convert.service.DefaultConversionService">
-    <constructor-arg ref="conversionService"/>
-  </bean>    
-    
-  <flow:flow-executor id="flowExecutor" flow-registry="flowRegistry"/>
-  
-  <flow:flow-registry 
-    id="flowRegistry" 
-    base-path="/WEB-INF/flows"
-    flow-builder-services="flowBuilderServices">
-    <flow:flow-location-pattern value="/**/*-flow.xml" />
-  </flow:flow-registry>
-  
-  <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
-    <property name="flowExecutor" ref="flowExecutor"/>
-  </bean>
+	<flow:flow-builder-services id="flowBuilderServices"
+		development="true" validator="validator" conversion-service="webflowConversionService" />
 
-  <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
-    <property name="flowRegistry" ref="flowRegistry"/>
-    <property name="order" value="0"/>
-  </bean>
-  
-  <!--  actions -->
-  <bean id="findExistingPlayerFormAction" 
-  	class="org.springframework.webflow.action.FormAction">
-    <property name="formObjectClass" 
-      value="com.springinpractice.ch05.domain.search.PlayerSearchCriteria"/>
-      <property name="propertyEditorRegistrar">
-        <bean class="com.springinpractice.ch05.beans.CustomPropertyEditorRegistrar"/>
-      </property>
-  </bean>
-  
-  <bean id="newAccountFormAction" 
-  	class="org.springframework.webflow.action.FormAction">
-    <property name="formObjectClass" 
-      value="com.springinpractice.ch05.form.AccountForm"/>
-    <property name="propertyEditorRegistrar">
-            <bean 
-              class="com.springinpractice.ch05.beans.CustomPropertyEditorRegistrar"/>
-    </property>
-  </bean>  
-  
-  <bean id="playerActions" class="com.springinpractice.ch05.webflow.action.PlayerActions">
-    <property name="playerService" ref="playerService"/>
-  </bean>
-  
-  <bean id="findExistingPlayerAction" class="com.springinpractice.ch05.webflow.action.FindExistingPlayerAction">
-    <property name="playerService" ref="playerService"/>
-  </bean>  
-  
-  <bean id="exceptionAction" class="com.springinpractice.ch05.webflow.action.ExceptionAction"/>
-  
+	<!-- Reuse the "conversionService" that is already being used by your Spring 
+		MVC project. See the dispatcherServlet-context.xml file for details. -->
+	<bean id="webflowConversionService"
+		class="org.springframework.binding.convert.service.DefaultConversionService">
+		<constructor-arg ref="conversionService" />
+	</bean>
+
+	<flow:flow-executor id="flowExecutor" flow-registry="flowRegistry" />
+
+	<flow:flow-registry id="flowRegistry" base-path="/WEB-INF/flows"
+		flow-builder-services="flowBuilderServices">
+		<flow:flow-location-pattern value="/**/*-flow.xml" />
+	</flow:flow-registry>
+
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<property name="flowExecutor" ref="flowExecutor" />
+	</bean>
+
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<property name="flowRegistry" ref="flowRegistry" />
+		<property name="order" value="0" />
+	</bean>
+
+	<!-- actions -->
+	<bean id="findExistingPlayerFormAction" class="org.springframework.webflow.action.FormAction">
+		<property name="formObjectClass"
+			value="com.springinpractice.ch05.domain.search.PlayerSearchCriteria" />
+		<property name="propertyEditorRegistrar">
+			<bean class="com.springinpractice.ch05.beans.CustomPropertyEditorRegistrar" />
+		</property>
+	</bean>
+
+	<bean id="newAccountFormAction" class="org.springframework.webflow.action.FormAction">
+		<property name="formObjectClass" value="com.springinpractice.ch05.form.AccountForm" />
+		<property name="propertyEditorRegistrar">
+			<bean class="com.springinpractice.ch05.beans.CustomPropertyEditorRegistrar" />
+		</property>
+	</bean>
+
+	<bean id="playerActions" class="com.springinpractice.ch05.webflow.action.PlayerActions">
+		<property name="playerService" ref="playerService" />
+	</bean>
+
+	<bean id="findExistingPlayerAction"
+		class="com.springinpractice.ch05.webflow.action.FindExistingPlayerAction">
+		<property name="playerService" ref="playerService" />
+	</bean>
+
+	<bean id="exceptionAction"
+		class="com.springinpractice.ch05.webflow.action.ExceptionAction" />
+
 </beans>
