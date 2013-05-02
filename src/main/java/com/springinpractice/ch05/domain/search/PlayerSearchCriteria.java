@@ -1,8 +1,18 @@
+/* 
+ * Copyright (c) 2013 Manning Publications Co.
+ * 
+ * Book: http://manning.com/wheeler/
+ * Blog: http://springinpractice.com/
+ * Code: https://github.com/springinpractice
+ */
 package com.springinpractice.ch05.domain.search;
 
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author Joshua White
+ */
 public class PlayerSearchCriteria  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
