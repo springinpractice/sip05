@@ -1,46 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Source project: sip05, branch: 05 (Maven Project) -->
 <flow xmlns="http://www.springframework.org/schema/webflow"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
-	http://www.springframework.org/schema/webflow
-	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-	start-state="findExistingPlayer">	
-	
-  <subflow-state id="findExistingPlayer" subflow="findExistingPlayer">	
-    <transition on="endState" to="newAccountForm"/>
-    <transition on="newSearchEndState" to="findExistingPlayer"/>  
-    <transition on="existingAccountFoundEndState" to="sendToLoginEndState">
-      <set name="flowScope.loginUsername" 
-      	value="currentEvent.attributes.loginUsername"/>
-    </transition>      
-  </subflow-state>
-  
-  <view-state id="newAccountForm" model="accountForm">
-   <binder>
-	 <binding property="guardian.firstName" required="true"/>
-	 <binding property="guardian.lastName" required="true"/>
-	</binder>   
-   <on-render>
-     <evaluate expression="newAccountFormAction.setupForm"/>         
-   </on-render>
-    <transition on="next" to="confirmNewAccount">
-      <evaluate expression="newAccountFormAction.bindAndValidate"/>     
-    </transition>
-  </view-state>
-  	
-  <view-state id="confirmNewAccount">
-    <transition on="back" to="newAccountForm" />
-    <transition on="next" to="processNewAccount" />
-  </view-state>
-  
-  <action-state id="processNewAccount">
-    <set name="flowScope.loginUsername"
-      value="playerService.createNewAccount(accountForm)"/>
-	<transition on="success" to="sendToLoginEndState"/>
-  </action-state>  
-		
-  <end-state id="sendToLoginEndState" 
-    view="externalRedirect:contextRelative:/login.jsp?username=#{flowScope.loginUsername}"/>
-	 
+		http://www.springframework.org/schema/webflow
+		http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	start-state="findExistingPlayer">
+
+	<subflow-state id="findExistingPlayer" subflow="findExistingPlayer">
+		<transition on="endState" to="newAccountForm" />
+		<transition on="newSearchEndState" to="findExistingPlayer" />
+		<transition on="existingAccountFoundEndState" to="sendToLoginEndState">
+			<set name="flowScope.loginUsername" value="currentEvent.attributes.loginUsername" />
+		</transition>
+	</subflow-state>
+
+	<view-state id="newAccountForm" model="accountForm">
+		<binder>
+			<binding property="guardian.firstName" required="true" />
+			<binding property="guardian.lastName" required="true" />
+		</binder>
+		<on-render>
+			<evaluate expression="newAccountFormAction.setupForm" />
+		</on-render>
+		<transition on="next" to="confirmNewAccount">
+			<evaluate expression="newAccountFormAction.bindAndValidate" />
+		</transition>
+	</view-state>
+
+	<view-state id="confirmNewAccount">
+		<transition on="back" to="newAccountForm" />
+		<transition on="next" to="processNewAccount" />
+	</view-state>
+
+	<action-state id="processNewAccount">
+		<set name="flowScope.loginUsername" value="playerService.createNewAccount(accountForm)" />
+		<transition on="success" to="sendToLoginEndState" />
+	</action-state>
+
+	<end-state id="sendToLoginEndState"
+		view="externalRedirect:contextRelative:/login.jsp?username=#{flowScope.loginUsername}" />
 </flow>

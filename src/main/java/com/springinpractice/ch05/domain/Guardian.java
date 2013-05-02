@@ -1,3 +1,10 @@
+/* 
+ * Copyright (c) 2013 Manning Publications Co.
+ * 
+ * Book: http://manning.com/wheeler/
+ * Blog: http://springinpractice.com/
+ * Code: https://github.com/springinpractice
+ */
 package com.springinpractice.ch05.domain;
 
 import java.io.Serializable;
@@ -8,6 +15,9 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * @author Joshua White
+ */
 public class Guardian implements Serializable {
 	private static final long serialVersionUID = 1L;
 		
