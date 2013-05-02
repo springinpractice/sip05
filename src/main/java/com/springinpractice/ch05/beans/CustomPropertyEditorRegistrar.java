@@ -1,3 +1,10 @@
+/* 
+ * Copyright (c) 2013 Manning Publications Co.
+ * 
+ * Book: http://manning.com/wheeler/
+ * Blog: http://springinpractice.com/
+ * Code: https://github.com/springinpractice
+ */
 package com.springinpractice.ch05.beans;
 
 import java.text.SimpleDateFormat;
@@ -7,7 +14,9 @@ import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 
-
+/**
+ * @author Joshua White
+ */
 public class CustomPropertyEditorRegistrar implements PropertyEditorRegistrar {
 
 	@Override
