@@ -10,7 +10,6 @@
     td.label { text-align: right; }
     td.value { text-align: left; font-weight: bold; }
 </style>		
-	</style>
   </head>
   <body>
     <div id="header">
